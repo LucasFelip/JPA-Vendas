@@ -42,7 +42,7 @@ public class FreteDAO {
 
 	public Frete find(Integer id) throws Exception {
 		Connection conn = Conexao.abrir();
-		PreparedStatement ps = conn.prepareStatement("select descricao, peso, valcr from Frete where id=?");
+		PreparedStatement ps = conn.prepareStatement("select descricao, peso, valcr, cliente, cidade from Frete where id=?");
 		ps.setInt(1, id);
 		ResultSet rs = ps.executeQuery();
 		if (!rs.next())
