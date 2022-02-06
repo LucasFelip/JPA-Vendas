@@ -6,7 +6,7 @@ import javax.persistence.Persistence;
 
 public class EMFactory {
 
-	private static final EntityManagerFactory factory = Persistence.createEntityManagerFactory("pedidovendas");
+	private static final EntityManagerFactory factory = Persistence.createEntityManagerFactory("lab05_jpa-test");
 
 	public EntityManager getEntityManager() {
 		return factory.createEntityManager();
