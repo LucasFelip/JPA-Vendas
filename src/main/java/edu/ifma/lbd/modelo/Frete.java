@@ -1,32 +1,31 @@
 package edu.ifma.lbd.modelo;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
-public class Frete {
+public class Frete implements Entidade{
 	
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
-	int codigo_frete;
+	Integer id;
 	String descricao;
 	float peso;
 	float valcr;
 	
 	@ManyToOne
+	@JoinColumn(name = "cliente_id", nullable = false)
 	private Cliente cliente;
 	
 	@ManyToOne
+	@JoinColumn(name = "cidade_id", nullable = false)
 	private Cidade cidade;
 
-	public int getCodigo_frete() {
-		return codigo_frete;
+	public Integer getId() {
+		return id;
 	}
 
-	public void setCodigo_frete(int codigo_frete) {
-		this.codigo_frete = codigo_frete;
+	public void setCodigo_frete(Integer id) {
+		this.id = id;
 	}
 
 	public String getDescricao() {
@@ -69,5 +68,17 @@ public class Frete {
 		this.cidade = cidade;
 	}
 	
+	@Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Frete frete = (Frete) o;
+        return Objects.equals(id, frete.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
 	
 }

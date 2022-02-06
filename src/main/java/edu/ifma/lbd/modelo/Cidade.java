@@ -1,63 +1,76 @@
 package edu.ifma.lbd.modelo;
 
-import java.util.List;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
-public class Cidade {
-	
-	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
-	int codigo_cidade;
+public class Cidade implements Entidade{
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	Integer id;
 	String nome;
 	String uf;
 	float taxa;
-	
-	@OneToMany(mappedBy="cidade", fetch=FetchType.LAZY)
-	private List<Frete> frete;
-	
-	public List<Frete> getFrete() {
-		return frete;
+
+	@OneToMany(mappedBy = "cidade", cascade = CascadeType.ALL)
+	private Set<Frete> frete = new LinkedHashSet<>();
+
+	public Integer getId() {
+		return id;
 	}
 
-	public void setFrete(List<Frete> frete) {
-		this.frete = frete;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
-	public int getCodigo_cidade() {
-		return codigo_cidade;
-	}
-	
-	public void setCodigo_cidade(int codigo_cidade) {
-		this.codigo_cidade = codigo_cidade;
-	}
-	
 	public String getNome() {
 		return nome;
 	}
-	
+
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	
+
 	public String getUf() {
 		return uf;
 	}
-	
+
 	public void setUf(String uf) {
 		this.uf = uf;
 	}
-	
+
 	public float getTaxa() {
 		return taxa;
 	}
-	
+
 	public void setTaxa(float taxa) {
 		this.taxa = taxa;
+	}
+
+	public Set<Frete> getFrete() {
+		return frete;
+	}
+
+	public void setFrete(Set<Frete> frete) {
+		this.frete = frete;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o)
+			return true;
+		if (o == null || getClass() != o.getClass())
+			return false;
+		Cidade cidade = (Cidade) o;
+		return Objects.equals(id, cidade.id);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
 	}
 }
