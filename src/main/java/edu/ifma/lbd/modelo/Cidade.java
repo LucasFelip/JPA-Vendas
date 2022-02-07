@@ -1,13 +1,10 @@
 package edu.ifma.lbd.modelo;
 
-import java.util.LinkedHashSet;
-import java.util.Set;
-
+import java.util.*;
 import javax.persistence.*;
-import java.util.Objects;
 
 @Entity
-public class Cidade implements Entidade{
+public class Cidade implements Entidade {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,7 +14,7 @@ public class Cidade implements Entidade{
 	float taxa;
 
 	@OneToMany(mappedBy = "cidade", cascade = CascadeType.ALL)
-	private Set<Frete> frete = new LinkedHashSet<>();
+	private Set<Frete> fretes = new LinkedHashSet<>();
 
 	public Integer getId() {
 		return id;
@@ -51,14 +48,6 @@ public class Cidade implements Entidade{
 		this.taxa = taxa;
 	}
 
-	public Set<Frete> getFrete() {
-		return frete;
-	}
-
-	public void setFrete(Set<Frete> frete) {
-		this.frete = frete;
-	}
-
 	@Override
 	public boolean equals(Object o) {
 		if (this == o)
@@ -72,5 +61,9 @@ public class Cidade implements Entidade{
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
+	}
+
+	public void adiciona(Frete frete) {
+		fretes.add(frete);
 	}
 }

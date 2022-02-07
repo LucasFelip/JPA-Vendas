@@ -1,10 +1,10 @@
 package edu.ifma.lbd.modelo;
 
 import javax.persistence.*;
-import java.util.Objects;
+import java.util.*;
 
 @Entity
-public class Frete implements Entidade{
+public class Frete implements Entidade {
 	
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	Integer id;
