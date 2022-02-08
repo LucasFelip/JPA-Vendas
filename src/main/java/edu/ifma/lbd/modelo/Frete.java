@@ -13,7 +13,7 @@ public class Frete implements Entidade {
 	@Column(name = "codigo_frete")
 	private Integer id;
 
-	@Column(name = "descrição", nullable = false)
+	@Column(name = "descricao", nullable = false)
 	private String descricao;
 
 	@Column(name = "peso", nullable = false)
