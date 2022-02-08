@@ -1,24 +1,23 @@
 package edu.ifma.lbd.service;
 
-import javax.persistence.EntityManager;
+import java.util.List;
 
-import edu.ifma.lbd.dao.FreteDAO;
+import edu.ifma.lbd.dao.FreteRepositorio;
+import edu.ifma.lbd.modelo.Cliente;
 import edu.ifma.lbd.modelo.Frete;
-import edu.ifma.lbd.util.EMFactory;
 
 public class FreteService {
-	private final FreteDAO dao;
-	private final EntityManager manager;
+	private final FreteRepositorio dao;
 
-	public FreteService() {
-		this.manager = new EMFactory().getEntityManager();
-		this.dao = new FreteDAO(manager);
+	public FreteService(FreteRepositorio freteRepositorio) {
+		this.dao = freteRepositorio;
 	}
-	
+
 	public Frete salva(Frete frete) throws Exception {
-		manager.getTransaction().begin();
-		frete = dao.salvaOuAtualiza(frete);
-		manager.getTransaction().commit();
-		return frete;		
+		return dao.salvaOuAtualiza(frete);
+	}
+
+	public List<Frete> buscarTodosFretePorUsuario(Cliente cliente) {
+		return dao.buscarFretePorUsuario(cliente);
 	}
 }

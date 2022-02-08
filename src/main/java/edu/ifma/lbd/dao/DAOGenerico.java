@@ -1,9 +1,11 @@
 package edu.ifma.lbd.dao;
 
-import edu.ifma.lbd.modelo.Entidade;
+
+import java.util.*;
 
 import javax.persistence.EntityManager;
-import java.util.Objects;
+
+import edu.ifma.lbd.modelo.Entidade;
 
 class DAOGenerico<T extends Entidade> {
 	private final EntityManager manager;
@@ -13,11 +15,11 @@ class DAOGenerico<T extends Entidade> {
 	}
 
 	T buscaPorId(Class<T> clazz, Integer id) {
-		return manager.find(clazz, id);
-	}
+        return manager.find(clazz, id);
+    }
 
-	T salvaOuAtualiza(T t) {
-		if (Objects.isNull(t.getId()))
+	public T salvaOuAtualiza(T t) {
+		if (Objects.isNull(t.getClass()))
 			this.manager.persist(t);
 		else
 			t = this.manager.merge(t);

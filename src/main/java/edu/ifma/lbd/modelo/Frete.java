@@ -1,21 +1,31 @@
 package edu.ifma.lbd.modelo;
 
+import java.util.Objects;
+
 import javax.persistence.*;
-import java.util.*;
 
 @Entity
+@Table(name = "frete")
 public class Frete implements Entidade {
-	
-	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
-	Integer id;
-	String descricao;
-	float peso;
-	float valcr;
-	
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "codigo_frete")
+	private Integer id;
+
+	@Column(name = "descrição", nullable = false)
+	private String descricao;
+
+	@Column(name = "peso", nullable = false)
+	private float peso;
+
+	@Column(name = "valcr", nullable = false)
+	private float valcr;
+
 	@ManyToOne
 	@JoinColumn(name = "cliente_id", nullable = false)
 	private Cliente cliente;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "cidade_id", nullable = false)
 	private Cidade cidade;
@@ -24,7 +34,7 @@ public class Frete implements Entidade {
 		return id;
 	}
 
-	public void setCodigo_frete(Integer id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -52,6 +62,18 @@ public class Frete implements Entidade {
 		this.valcr = valcr;
 	}
 
+	public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Frete frete = (Frete) o;
+        return Objects.equals(id, frete.id);
+    }
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+	
 	public Cliente getCliente() {
 		return cliente;
 	}
@@ -67,18 +89,4 @@ public class Frete implements Entidade {
 	public void setCidade(Cidade cidade) {
 		this.cidade = cidade;
 	}
-	
-	@Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Frete frete = (Frete) o;
-        return Objects.equals(id, frete.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
-	
 }

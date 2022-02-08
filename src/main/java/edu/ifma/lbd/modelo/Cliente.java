@@ -4,23 +4,32 @@ import java.util.*;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "cliente")
 public class Cliente implements Entidade {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	Integer id;
-	String nome;
-	String endereco;
-	String telefone;
-
+	@Column(name = "codigo_cliente")
+	private Integer id;
+	
+	@Column(name = "nome")
+	private String nome;
+	
+	@Column(name = "endereco")
+	private String endereco;
+	
+	@Column(name = "telefone")
+	private String telefone;
+	
 	@OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
+	@Column(name = "frete")
 	private Set<Frete> fretes = new LinkedHashSet<>();
 
 	public Integer getId() {
 		return id;
 	}
 
-	public void setCodigo_cliente(Integer id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -47,23 +56,20 @@ public class Cliente implements Entidade {
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
-
-	@Override
+	
 	public boolean equals(Object o) {
-		if (this == o)
-			return true;
-		if (o == null || getClass() != o.getClass())
-			return false;
-		Cliente cliente = (Cliente) o;
-		return Objects.equals(id, cliente.id);
-	}
-
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Cliente cliente = (Cliente) o;
+        return Objects.equals(id, cliente.id);
+    }
+	
 	@Override
-	public int hashCode() {
-		return Objects.hash(id);
-	}
-
-	public void adiciona(Frete frete) {
-		fretes.add(frete);
-	}
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+	
+	public void adiciona(Frete e) {
+        fretes.add(e);
+    }
 }

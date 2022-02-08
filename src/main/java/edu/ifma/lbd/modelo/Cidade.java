@@ -4,16 +4,24 @@ import java.util.*;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "cidade")
 public class Cidade implements Entidade {
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	Integer id;
-	String nome;
-	String uf;
-	float taxa;
+	@Column(name = "codigo_cidade")
+	private Integer id;
 
-	@OneToMany(mappedBy = "cidade", cascade = CascadeType.ALL)
+	@Column(name = "nome")
+	private String nome;
+
+	@Column(name = "uf")
+	private String uf;
+
+	@Column(name = "taxa")
+	private float taxa;
+
+	@OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
+	@Column(name = "frete")
 	private Set<Frete> fretes = new LinkedHashSet<>();
 
 	public Integer getId() {
@@ -48,7 +56,6 @@ public class Cidade implements Entidade {
 		this.taxa = taxa;
 	}
 
-	@Override
 	public boolean equals(Object o) {
 		if (this == o)
 			return true;
@@ -63,7 +70,7 @@ public class Cidade implements Entidade {
 		return Objects.hash(id);
 	}
 
-	public void adiciona(Frete frete) {
-		fretes.add(frete);
+	public void adiciona(Frete e) {
+		fretes.add(e);
 	}
 }

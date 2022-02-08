@@ -1,16 +1,15 @@
 package edu.ifma.lbd.dao;
 
-import java.util.List;
 import javax.persistence.EntityManager;
+import java.util.List;
 
-import edu.ifma.lbd.modelo.Cliente;
+import edu.ifma.lbd.modelo.*;
 
-public class ClienteDAO {
-
+public class ClienteRepositorio {
 	private final EntityManager manager;
 	private DAOGenerico<Cliente> daoGenerico;
 
-	public ClienteDAO(EntityManager manager) {
+	public ClienteRepositorio(EntityManager manager) {
 		this.manager = manager;
 		daoGenerico = new DAOGenerico<Cliente>(manager);
 	}
