@@ -7,5 +7,9 @@ INSERT INTO cidade(nome, taxa, uf) VALUES ('São Luís', 10.5, 'MA');
 INSERT INTO cidade(nome, taxa, uf) VALUES ('São Jose de Ribamar', 19.5, 'MA');
 INSERT INTO cidade(nome, taxa, uf) VALUES ('Raposa', 5.5, 'MA');
 
-INSERT INTO frete( descricao, peso, valor, cidade_id, cliente_id) VALUES  (1, 1, 23.99, 1.30, 'Celular');
-INSERT INTO frete( descricao, peso, valor, cidade_id, cliente_id) VALUES  (1, 1, 23.99, 1.30, 'Notebook');
+INSERT INTO frete(descricao, peso, valor, cidade_id, cliente_id) VALUES  ('Celular Samsung', 23.99, 250.4, 1, 1);
+INSERT INTO frete(descricao, peso, valor, cidade_id, cliente_id) VALUES  ('Notebook i3', 1599.99, 250.4, 1, 1);
+INSERT INTO frete(descricao, peso, valor, cidade_id, cliente_id) VALUES  ('Caderno Grande', 10.99, 250.4, 1, 2);
+INSERT INTO frete(descricao, peso, valor, cidade_id, cliente_id) VALUES  ('Celular Motorola', 23.99, 250.4, 2, 3);
+INSERT INTO frete(descricao, peso, valor, cidade_id, cliente_id) VALUES  ('Notebook i3', 1599.99, 250.4, 2, 3);
+INSERT INTO frete(descricao, peso, valor, cidade_id, cliente_id) VALUES  ('Caderno Pegueno', 10.99, 250.4, 1, 4);
