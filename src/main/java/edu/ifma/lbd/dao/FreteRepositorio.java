@@ -20,7 +20,7 @@ public class FreteRepositorio {
 	}
 
 	public List<Frete> buscarFretePorUsuario(Cliente cliente) {
-		return this.manager.createQuery("SELECT f FROM frete f WHERE f.id.cliente.id = :clientID", Frete.class)
+		return this.manager.createQuery("select frete.descrição, f.peso, f.valcr from frete f where f.cidade_id = :clienteID", Frete.class)
 				.setParameter("clientID", cliente.getId()).getResultList();
 	}
 

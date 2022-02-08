@@ -19,7 +19,7 @@ public class CidadeRepositorio {
 	}
 
 	public List<Cidade> buscaPor(String nome) {
-		return this.manager.createQuery("from Cidade " + "where upper(nome) like :nome", Cidade.class)
+		return this.manager.createQuery("from cidade " + "where upper(nome) like :nome", Cidade.class)
 				.setParameter("nome", nome.toUpperCase() + "%").getResultList();
 	}
 

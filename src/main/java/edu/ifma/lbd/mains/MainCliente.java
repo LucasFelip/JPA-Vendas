@@ -1,6 +1,7 @@
 package edu.ifma.lbd.mains;
 
 import edu.ifma.lbd.modelo.*;
+import edu.ifma.lbd.dao.*;
 import javax.persistence.*;
 
 public class MainCliente {
@@ -10,6 +11,8 @@ public class MainCliente {
 		
 		EntityTransaction transacao = manager.getTransaction();
 		transacao.begin();
+		
+		FreteRepositorio freteRep = new FreteRepositorio(manager);
 
 		Cliente cliente = new Cliente();
 		Cidade cidade = new Cidade();
@@ -38,6 +41,8 @@ public class MainCliente {
 		
 		cliente.adiciona(frete);
 		manager.persist(cliente);
+		
+		System.err.print(freteRep.buscarFretePorUsuario(cliente));
 		
 		transacao.commit();
 
